@@ -19,7 +19,7 @@ replayBtn.addEventListener('click',gameReset)
 gameBoardEl.addEventListener('click',function(event){
     let buttonId = event.target.getAttribute('data-id')
     if(checkForWinner() === true){
-
+        
         return;
     }
     if(event.target.tagName !== 'LI'){
