@@ -1,15 +1,15 @@
 *{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 body{
     margin: 0;
-    background-color: gray;
+    background-color: #B2DDF7;
 }
 header{
     font-weight: 500;
     font-size: 5vmin;
     padding: 1vmin;
-    background-color: cadetblue;
+    background-color: #FF101F;
     text-align: center;
     color: white;
 
@@ -54,6 +54,7 @@ h1{
     height:20px;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 2px;
+    background-color: ;
 }
 .color-swatch{
     height:15px;
@@ -98,7 +99,9 @@ h2{
     background-color:white;
     border-radius: 0px 10px 10px 0px;
     position: absolute;
-    visibility: hidden;
+    /* visibility: hidden; */
+    margin-left: -300px;
+    transition: 0.5s ease-in-out;
     padding:10px;
     
 }
@@ -112,5 +115,8 @@ h2{
 }
 
 #theme-header{
-
+    background-color: #FF4956;
+    border-radius:0px 0px 5px 0px ;
+    margin: 0px;
+    width:140px;
 }

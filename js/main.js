@@ -43,15 +43,15 @@ const headerEl = document.querySelector('header')
 const turnEl = document.querySelector('#current-turn')
 /*----- event listeners -----*/
 themeButtonEl.addEventListener('click',function(event){
-    let checkHidden = themeControllerWrapperEl.style.visibility
+    let checkHidden = themeControllerWrapperEl.style.marginLeft
     
-     if(checkHidden === 'hidden'){
-        themeControllerWrapperEl.style.visibility = 'visible'
+     if(checkHidden === '-300px'){
+        themeControllerWrapperEl.style.marginLeft = '0px'
         themeButtonEl.textContent = 'Themes <'
         return;
         
      }else{
-        themeControllerWrapperEl.style.visibility = 'hidden' 
+        themeControllerWrapperEl.style.marginLeft = '-300px'
         themeButtonEl.textContent = 'Themes >'
         return;
      }
@@ -244,7 +244,7 @@ function isGameOVer(){
 
 // --------------- FUNCTION EXECUTION BELOW -------- //
 
-themeControllerWrapperEl.style.visibility = 'hidden';
+themeControllerWrapperEl.style.marginLeft = '-300px';
 renderBoard();
 createThemeBgButtons();
 createThemeHeadBgButtons();
