@@ -1,17 +1,81 @@
 /*----- constants -----*/
 let gamePieces = ["","","","","","","","",""]
 const turnSequence = ['X','O','X','O','X','O','X','O','X']
-
+const COLORS = [
+    {color: 'Red', colorHexCode:'#ff0000'},
+    {color: 'Blue', colorHexCode:'#0000ff'},
+    {color: 'Maroon',colorHexCode:'#800000'},
+    {color: 'Brown',colorHexCode:'#9a6324'},
+    {color: 'Olive',colorHexCode:'#808000'},
+    {color: 'Orange',colorHexCode:'#f58231'},
+    {color: 'Pink',colorHexCode:'#ffd8b1'},
+    {color: 'Beige',colorHexCode:'#fffac8'},
+    {color: 'Green',colorHexCode:'#3cb44b'},
+    {color: 'Cyan',colorHexCode:'#46f0f0'},
+    {color: 'Purple',colorHexCode:'#911eb4'},
+    {color: 'Magenta',colorHexCode:'#f032e6'},
+    {color: 'Lavender',colorHexCode:'#e6beff'},
+    {color: 'White',colorHexCode:'#ffffff'},
+    {color: 'Mint',colorHexCode:'#aaffc3'},
+    {color: 'Black',colorHexCode:'#000000'},
+    
+]
+const PLAYER_SYMBOLS = ['☺','♨','➑','☆','★','♡','❤','✈','✂','✄','♕','✝','◑',
+'♪','♫','✣','✪','✰','✧','✦','☑','✔','✘','✎','✍','♀','♂','☎','☏','✉','✆','←','→','↑','↓','↔','↔','↕','⇄','⇅',
+'↲','↳','↱','⇤','↶','↷','↺','↺'
+]
 /*----- app's state (variables) -----*/
 let turnCounter = 0;
 let usedPieces = [];
 let checks = [];
+let themeElStyle;
 
 /*----- cached element references -----*/
 const gameBoardEl = document.querySelector('#game-board');
 const h2El = document.querySelector('h1')
 const replayBtn = document.querySelector('#replayBtn')
+const themeButtonEl = document.querySelector('#theme-header')
+const themeControllerWrapperEl = document.querySelector('#theme-controller-wrapper')
+const bgControllerWrapperEl = document.querySelector('#bg-controller-wrapper')
+const bodyEl = document.querySelector('body')
+const headerControllerWrapperEl = document.querySelector('#head-controller-wrapper')
+const headerEl = document.querySelector('header')
+const turnEl = document.querySelector('#current-turn')
 /*----- event listeners -----*/
+themeButtonEl.addEventListener('click',function(event){
+    let checkHidden = themeControllerWrapperEl.style.visibility
+    
+     if(checkHidden === 'hidden'){
+        themeControllerWrapperEl.style.visibility = 'visible'
+        themeButtonEl.textContent = 'Themes <'
+        return;
+        
+     }else{
+        themeControllerWrapperEl.style.visibility = 'hidden' 
+        themeButtonEl.textContent = 'Themes >'
+        return;
+     }
+})
+
+bgControllerWrapperEl.addEventListener('click',function(event){
+    console.log(event.target.tagName)
+    if(event.target.tagName !== "BUTTON"){
+        return;
+    }else{
+        bodyEl.style.backgroundColor = event.target.getAttribute('data-id')
+    }
+})
+
+headerControllerWrapperEl.addEventListener('click',function(event){
+    console.log(event.target.tagName)
+    if(event.target.tagName !== "BUTTON"){
+        return;
+    }else{
+        headerEl.style.backgroundColor = event.target.getAttribute('data-id')
+    }
+})
+
+
 replayBtn.addEventListener('click',gameReset)
 
 
@@ -40,6 +104,7 @@ gameBoardEl.addEventListener('click',function(event){
     event.target.textContent = turnSequence[turnCounter]
     event.target.style.backgroundColor = 'white'
     checkForWinner();
+    turnSetter();
     return(turnCounter += 1);
    
 
@@ -54,13 +119,44 @@ function gameReset(){
     usedPieces = [];
     gamePieces = ["","","","","","","","",""];
     h2El.textContent = 'Goodluck!';
+    turnEl.textContent = `Player X goes next`
     !!checkForWinner();
     renderBoard();
     return checks = [];
 
 };
+function turnSetter(){
+    let currentTurn = turnSequence[turnCounter+1];
+    turnEl.textContent = `Player ${currentTurn} goes next`
+};
+function createThemeBgButtons(){
+    COLORS.forEach(element => {
+       bgButtonEl = document.createElement('button');
+       bgButtonEl.textContent = element.color
+       bgButtonEl.setAttribute('data-id',element.colorHexCode)
+       bgButtonEl.setAttribute('class','theme-controller-button')
+       bgControllerWrapperEl.appendChild(bgButtonEl)
+       bgButtonSwatchEl = document.createElement('div')
+       bgButtonSwatchEl.setAttribute('class','color-swatch')
+       bgButtonSwatchEl.style.backgroundColor = element.colorHexCode;
+       bgControllerWrapperEl.appendChild(bgButtonSwatchEl)
 
+    });
+};
+function createThemeHeadBgButtons(){
+    COLORS.forEach(element => {
+       bgButtonEl = document.createElement('button');
+       bgButtonEl.textContent = element.color
+       bgButtonEl.setAttribute('data-id',element.colorHexCode)
+       bgButtonEl.setAttribute('class','theme-controller-button')
+       headerControllerWrapperEl.appendChild(bgButtonEl)
+       bgButtonSwatchEl = document.createElement('div')
+       bgButtonSwatchEl.setAttribute('class','color-swatch')
+       bgButtonSwatchEl.style.backgroundColor = element.colorHexCode;
+       headerControllerWrapperEl.appendChild(bgButtonSwatchEl)
 
+    });
+};
 function renderBoard(){
     gamePieces.forEach(function(piece,idx){
         gamePieceEl = document.createElement('li');
@@ -72,8 +168,6 @@ function renderBoard(){
     })
 
 }
-
-
 function checkForWinner(){
     // if(turnCounter === 9){
     //     checks = [];
@@ -145,8 +239,14 @@ function isGameOVer(){
         return false;
     }
 };
+
+
+
+// --------------- FUNCTION EXECUTION BELOW -------- //
+
+themeControllerWrapperEl.style.visibility = 'hidden';
 renderBoard();
-
-
+createThemeBgButtons();
+createThemeHeadBgButtons();
 
 // TO DO - Add replay button, display who's turn it is! 

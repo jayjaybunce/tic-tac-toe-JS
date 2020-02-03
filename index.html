@@ -6,17 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/main.css">
-    <script defer src="js/main.js"></script>
+    
+
 </head>
 <body>
     <header>Tic-Tac-Toe</header>
+    <h2 id="theme-header"><a>Themes ></a></h2>
+    <div id="theme-controller-wrapper" class="active">
+        <strong>Select Your Piece</strong><br>
+        Player 1 Symbol: X<br>
+        Player 2 Symbol: O<br>
+
+
+
+        
+        <section id="bg-controller-wrapper">
+        -Background Color-<br>
+        
+        </section>
+        <section id="head-controller-wrapper">
+            -Header Color-<br>
+        </section>
+    </div>
     <section id="game-board-wrapper">
         <h1>Good Luck Player O and Player X</h1>
+        <section id="current-turn">
+        Player X goes next
+        </section>
             <ul id="game-board">
                 <!-- JS Builds Objets and places here as <li> Elements </li> -->
+                
             </ul>
         <button id="replayBtn">Replay</button>
     </section>
+    <script src="js/themes.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
                     <!-- <table id="gameBoard">
