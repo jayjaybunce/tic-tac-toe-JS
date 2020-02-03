@@ -1,6 +1,6 @@
 /*----- constants -----*/
 let gamePieces = ["","","","","","","","",""]
-const turnSequence = ['X','O','X','O','X','O','X','O','X']
+const turnSequence = ['X','O','X','O','X','O','X','O','X','O','X']
 const COLORS = [
     {color: 'Red', colorHexCode:'#ff0000'},
     {color: 'Blue', colorHexCode:'#0000ff'},
