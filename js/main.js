@@ -102,7 +102,7 @@ gameBoardEl.addEventListener('click',function(event){
     console.log(buttonId,'clicked')
     
     event.target.textContent = turnSequence[turnCounter]
-    event.target.style.backgroundColor = 'white'
+    // event.target.style.backgroundColor = 'white'
     checkForWinner();
     turnSetter();
     return(turnCounter += 1);

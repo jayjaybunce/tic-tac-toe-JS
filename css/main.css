@@ -54,13 +54,13 @@ h1{
     height:20px;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 2px;
-    background-color: ;
+    
 }
 .color-swatch{
-    height:15px;
-    width:15px;
+    height:20px;
+    width:20px;
     padding: 0;
-    margin: 0;
+    
     display: inline-block;
 
 }
@@ -119,4 +119,18 @@ h2{
     border-radius:0px 0px 5px 0px ;
     margin: 0px;
     width:140px;
+}
+#bg-controller-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+
+}
+#head-controller-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+
 }
